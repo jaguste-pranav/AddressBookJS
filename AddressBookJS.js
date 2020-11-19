@@ -122,11 +122,11 @@ var contactCount=0;
     console.log("Total count of contacts is: "+contactCount);
 
     //UC7: Check for duplicate contacts 
-    let contactNew=new Contacts("Rachit","Sharma","Juhu","Mumbai","Maharashtra",400054,919004025062,"rachit@gmail.com");
-    if(AddressBookArray.find(contact=>contactNew.firstName==contactNew.firstName))
-    throw "Contact already exists";
+    /*let contactNew=new Contacts("Rachit","Sharma","Juhu","Mumbai","Maharashtra",400054,919004025062,"rachit@gmail.com");
+     if(AddressBookArray.find(contact=>contactNew.firstName==contactNew.firstName))
+     throw "Contact already exists";
     else
-    AddressBookArray.push(contactNew);
+    AddressBookArray.push(contactNew);*/
 
     //UC8: Search Contact by city or state
     AddressBookArray.filter(contact=>contact.city.includes("Mumbai")).forEach(contact=>console.log(contact.toString()));
@@ -139,8 +139,16 @@ var contactCount=0;
         if (value == "Maharashtra") 
             console.log("The person from Maharashtra is: ", key);
     }); 
+
+    //UC10: Get person count by city or state
+    function PersonCountByState(State)
+    {
+    let countByState = AddressBookArray.reduce(((count,contact) => {if(contact.state == State) return count+1; return count;}),0);
+    return countByState;
+    }
     console.log("The number of contacts in Maharshtra are: "+PersonCountByState("Maharashtra"));
 }
+
 catch(e){
     console.log(e);
 }
